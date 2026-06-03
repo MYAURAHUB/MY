@@ -252,18 +252,15 @@
         </div>
     </header>
 
-<main>
+    <main>
         <div class="masonry-grid" id="js-grid">
             
             <div class="card-wrapper" style="opacity: 1; transform: none; break-inside: avoid; margin-bottom: 24px;">
                 <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                     <span class="card-category" style="margin-bottom: 12px; display: block; color: var(--text-secondary); font-size: 10px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
                     
-                    <script type="text/javascript">
-                        <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"></script>
-<div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
-
-                    </script>
+                    <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"></script>
+                    <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
                     
                 </div>
             </div>
@@ -271,6 +268,7 @@
         </div>
         <div class="infinite-loader-trigger" id="js-infinite-trigger"><div class="spinner"></div></div>
     </main>
+
     <div class="modal-overlay" id="js-modal-overlay">
         <div class="modal-window">
             <div class="modal-media-side">
@@ -304,7 +302,6 @@
 
     <script>
         // CONFIGURACIÓN DE TUS IMÁGENES LOCALES
-        // Puedes cambiar las rutas de 'img' y 'avatar' a tus carpetas locales
         const ASSET_PIPELINE = [
             { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 600, img: "1.jpg", user: "ASHLEY", avatar: "1.jpg" },
             { title: "EXITACION", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "2.JPG", user: "ASHLEY", avatar: "1.jpg" },
@@ -377,9 +374,6 @@
             }, true);
         }
 
-        /* --------------------------------------------------------------------------
-        INYECCIÓN DINÁMICA DE TARJETAS CON DATA-ATTRIBUTES PARA EL MODAL
-           -------------------------------------------------------------------------- */
         function generateCardBatch(count) {
             const grid = document.getElementById("js-grid");
             
@@ -389,7 +383,6 @@
                 cardWrapper.className = "card-wrapper";
                 cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
 
-                // Guardamos los datos de la tarjeta usando dataset para recuperarlos al dar clic
                 cardWrapper.innerHTML = `
                     <div class="premium-card" 
                         data-title="${schema.title}" 
@@ -431,42 +424,33 @@
             card.addEventListener('mouseleave', () => card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
         }
 
-        /* --------------------------------------------------------------------------
-        LÓGICA DEL MODAL INTERACTIVO PREMIUM
-           -------------------------------------------------------------------------- */
         function initModalEvents() {
             const grid = document.getElementById("js-grid");
             const overlay = document.getElementById("js-modal-overlay");
             const closeBtn = document.getElementById("js-close-modal");
 
-            // Elementos del modal a rellenar dinámicamente
             const mImg = document.getElementById("js-modal-img");
             const mTitle = document.getElementById("js-modal-title");
             const mCat = document.getElementById("js-modal-cat");
             const mAuthor = document.getElementById("js-modal-author");
             const mAvatar = document.getElementById("js-modal-avatar");
 
-            // Delegación de eventos para clicks en tarjetas
             grid.addEventListener("click", (e) => {
                 const card = e.target.closest(".premium-card");
                 if (!card) return;
 
-                // Extraer la información del dataset de la tarjeta clickeada
                 const { title, cat, img, user, avatar } = card.dataset;
 
-                // Inyectar datos en el modal de forma instantánea antes de abrir
                 mImg.src = img;
                 mTitle.textContent = title;
                 mCat.textContent = cat;
                 mAuthor.textContent = user;
                 mAvatar.src = avatar;
 
-                // Lanzar la transición fluida
                 overlay.classList.add("active");
                 document.body.classList.add("modal-open");
             });
 
-            // Cerrar Modal
             const closeModal = () => {
                 overlay.classList.remove("active");
                 document.body.classList.remove("modal-open");
@@ -474,12 +458,10 @@
 
             closeBtn.addEventListener("click", closeModal);
             
-            // Cerrar si hace clic fuera de la ventana del modal (en el blur de fondo)
             overlay.addEventListener("click", (e) => {
                 if (e.target === overlay) closeModal();
             });
 
-            // Cerrar con la tecla Escape
             window.addEventListener("keydown", (e) => {
                 if (e.key === "Escape" && overlay.classList.contains("active")) closeModal();
             });
@@ -496,13 +478,7 @@
         }
     </script>
 
+    <script src="https://pl29631894.effectivecpmnetwork.com/95/de/af/95deaf14afc8ae87770be5dc8aaba73d.js"></script>
 
-<script type="text/javascript">
-        <script src="https://pl29631894.effectivecpmnetwork.com/95/de/af/95deaf14afc8ae87770be5dc8aaba73d.js"></script>
-    </script>
-
-</body>
-</html>
-    
 </body>
 </html>
