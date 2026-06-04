@@ -253,19 +253,7 @@
     </header>
 
     <main>
-        <div class="masonry-grid" id="js-grid">
-            
-            <div class="card-wrapper" style="opacity: 1; transform: none; break-inside: avoid; margin-bottom: 24px;">
-                <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <span class="card-category" style="margin-bottom: 12px; display: block; color: var(--text-secondary); font-size: 10px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
-                    
-                    <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"></script>
-                    <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
-                    
-                </div>
-            </div>
-            
-        </div>
+        <div class="masonry-grid" id="js-grid"></div>
         <div class="infinite-loader-trigger" id="js-infinite-trigger"><div class="spinner"></div></div>
     </main>
 
@@ -316,6 +304,9 @@
             { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 500, img: "11.JPG", user: "VALERY", avatar: "11.JPG" },
             { title: "LUZ & PRESENCIA", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "12.JPG", user: "ASHLEY", avatar: "11.JPG" }
         ];
+
+        // Mantenemos un contador global para las tarjetas añadidas
+        let totalCardsGenerated = 0;
 
         document.addEventListener("DOMContentLoaded", () => {
             initMouseFollower();
@@ -378,7 +369,23 @@
             const grid = document.getElementById("js-grid");
             
             for (let i = 0; i < count; i++) {
-                const schema = ASSET_PIPELINE[i % ASSET_PIPELINE.length];
+                // Alternación: Si el contador global es impar, inyectamos un anuncio primero
+                if (totalCardsGenerated % 2 !== 0) {
+                    const adWrapper = document.createElement("div");
+                    adWrapper.className = "card-wrapper";
+                    adWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
+                    adWrapper.innerHTML = `
+                        <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <span class="card-category" style="margin-bottom: 12px; display: block; color: var(--text-secondary); font-size: 10px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
+                            <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"><\/script>
+                            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+                        </div>
+                    `;
+                    grid.appendChild(adWrapper);
+                }
+
+                // Generación de tarjeta de contenido normal
+                const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
                 const cardWrapper = document.createElement("div");
                 cardWrapper.className = "card-wrapper";
                 cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
@@ -411,6 +418,8 @@
 
                 grid.appendChild(cardWrapper);
                 bindTiltEffect(cardWrapper.querySelector('.premium-card'));
+                
+                totalCardsGenerated++; // Incrementamos el contador global
             }
         }
 
@@ -437,7 +446,7 @@
 
             grid.addEventListener("click", (e) => {
                 const card = e.target.closest(".premium-card");
-                if (!card) return;
+                if (!card || !card.dataset.title) return; // Validación para evitar clicks en los bloques de anuncios
 
                 const { title, cat, img, user, avatar } = card.dataset;
 
