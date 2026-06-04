@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura</title>
+    <title>Aura - Premium Experience</title>
     <style>
         /* ==========================================================================
         1. DESIGN SYSTEM & VARIABLES
@@ -78,10 +78,16 @@
         .pointer-hover .mouse-follower-aura { width: 60px; height: 60px; border-color: rgba(255, 255, 255, 0.5); }
 
         /* ==========================================================================
-        3. GLASS HEADER
+        3. GLASS HEADER (CORREGIDO PARA ESTAR SIEMPRE ENFRENTE)
            ========================================================================== */
         .glass-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: var(--bg-surface); backdrop-filter: blur(var(--blur-radius)); -webkit-backdrop-filter: blur(var(--blur-radius)); border-bottom: 1px solid var(--border-glow); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 40px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px; 
+            background: rgba(10, 10, 10, 0.8) !important; /* Forzar fondo oscuro para contraste */
+            backdrop-filter: blur(var(--blur-radius)) !important; 
+            -webkit-backdrop-filter: blur(var(--blur-radius)) !important; 
+            border-bottom: 1px solid var(--border-glow); 
+            z-index: 99999 !important; /* Capa ultra alta para evitar que las tarjetas se encimen */
+            display: flex; align-items: center; justify-content: space-between; padding: 0 40px;
         }
         .header-left { display: flex; align-items: center; gap: 32px; }
         .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
@@ -92,23 +98,29 @@
         .search-input { width: 100%; padding: 12px 20px 12px 48px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glow); border-radius: 30px; color: var(--text-primary); font-family: var(--font-sans); outline: none; transition: all 0.3s var(--transition-smooth); }
         .search-input:focus { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); }
         .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); width: 16px; height: 16px; }
-        .header-right { display: flex; align-items: center; gap: 24px; }
-        .icon-btn { background: none; border: none; color: var(--text-primary); position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glow); }
-        .notification-badge { position: absolute; top: 10px; right: 10px; width: 6px; height: 6px; background: #ff3366; border-radius: 50%; }
-        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-glow); }
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .icon-btn { background: none; border: none; color: var(--text-primary); position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glow); }
+        .notification-badge { position: absolute; top: 8px; right: 8px; width: 6px; height: 6px; background: #ff3366; border-radius: 50%; }
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-glow); }
+
+        /* Ajustes responsivos para pantallas móviles */
+        @media (max-width: 768px) {
+            .glass-header { padding: 0 16px !important; height: 65px; }
+            .nav-menu { gap: 14px; }
+            .nav-link { font-size: 13px; }
+            .search-container { display: none; }
+        }
 
         /* ==========================================================================
-        4. MASONRY GRID & CARDS (2 COLUMNAS EN MÓVIL FORZADO)
+        4. MASONRY GRID & CARDS
            ========================================================================== */
-        main { padding-top: 120px; padding-bottom: 60px; width: 100%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
+        main { padding-top: 90px; padding-bottom: 60px; width: 100%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
         
         .masonry-grid { columns: 5 300px; column-gap: 24px; padding: 0 40px; width: 100%; }
         
         @media (max-width: 1200px) { .masonry-grid { columns: 3; } }
         @media (max-width: 768px) { 
             .masonry-grid { columns: 2 !important; padding: 0 12px !important; column-gap: 12px !important; } 
-            .glass-header { padding: 0 20px; } 
-            .search-container { display: none; } 
         }
 
         .card-wrapper { break-inside: avoid; margin-bottom: 24px; opacity: 0; transform: translateY(40px) scale(0.95); animation: revealCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; perspective: 1000px; }
@@ -117,7 +129,7 @@
 
         .premium-card { position: relative; background: var(--bg-surface); border: 1px solid var(--border-glow); border-radius: 24px; overflow: hidden; transform-style: preserve-3d; transition: border-color 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth); }
         .premium-card:hover { border-color: var(--border-glow-hover); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-        .card-media-box { position: relative; width: 100%; overflow: hidden; background: #111; }
+        .card-media-box { position: relative; width: 100%; overflow: hidden; background: #111; z-index: 1; }
         .card-img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.15, 1, 0.3, 1); will-change: transform; }
         .premium-card:hover .card-img { transform: scale(1.06) translateZ(10px); }
 
@@ -146,12 +158,14 @@
         .spinner { width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.1); border-top-color: var(--text-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        .ad-iframe { width: 100%; height: 240px; border: none; background: transparent; overflow: hidden; display: block; }
+
         /* ==========================================================================
         5. NEXT-GEN DETAILED INTERFACE
            ========================================================================== */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-modal);
-            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 2000;
+            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 200000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none;
             transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -305,20 +319,19 @@
     </div>
 
     <script>
-        // CONFIGURACIÓN DE TUS IMÁGENES LOCALES (Extensiones unificadas a minúsculas para servidores sensibles)
         const ASSET_PIPELINE = [
             { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 600, img: "1.jpg", user: "ASHLEY", avatar: "1.jpg" },
-            { title: "EXITACION", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "2.JPG", user: "ASHLEY", avatar: "1.jpg" },
-            { title: "VANGUARDIA PURA", cat: "ACCESO PRIVADO", w: 400, h: 500, img: "3.JPG", user: "ASHLEY", avatar: "1.jpg" },
-            { title: "LUZ & PRESENCIA", cat: "CURATORÍA VISUAL", w: 400, h: 700, img: "4.JPG", user: "LINDA", avatar: "13.JPG" },
-            { title: "DIA SENSUAL", cat: "EDICIÓN LIMITADA", w: 400, h: 600, img: "5.JPG", user: "ASHLEY", avatar: "1.jpg" },
-            { title: "DIA PRIVADO", cat: "EXPERIENCIA PREMIUM", w: 400, h: 300, img: "6.JPG", user: "LINDA", avatar: "13.JPG" },
-            { title: "LUJURIA", cat: "ACCESO PRIVADO", w: 400, h: 500, img: "7.JPG", user: "LINDA", avatar: "13.JPG" },
-            { title: "MAXIMA SEXUALIDAD", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "8.JPG", user: "VALERY", avatar: "11.JPG" },
-            { title: "MAXIMA SEXUALIDAD", cat: "EDICIÓN LIMITADA", w: 400, h: 600, img: "9.JPG", user: "LINDA", avatar: "13.JPG" },
-            { title: "DIA PRIVADO", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "10.JPG", user: "LINDA", avatar: "13.JPG" },
-            { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 500, img: "11.JPG", user: "VALERY", avatar: "11.JPG" },
-            { title: "LUZ & PRESENCIA", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "12.JPG", user: "ASHLEY", avatar: "11.JPG" }
+            { title: "EXITACION", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "2.jpg", user: "ASHLEY", avatar: "1.jpg" },
+            { title: "VANGUARDIA PURA", cat: "ACCESO PRIVADO", w: 400, h: 500, img: "3.jpg", user: "ASHLEY", avatar: "1.jpg" },
+            { title: "LUZ & PRESENCIA", cat: "CURATORÍA VISUAL", w: 400, h: 700, img: "4.jpg", user: "LINDA", avatar: "13.jpg" },
+            { title: "DIA SENSUAL", cat: "EDICIÓN LIMITADA", w: 400, h: 600, img: "5.jpg", user: "ASHLEY", avatar: "1.jpg" },
+            { title: "DIA PRIVADO", cat: "EXPERIENCIA PREMIUM", w: 400, h: 300, img: "6.jpg", user: "LINDA", avatar: "13.jpg" },
+            { title: "LUJURIA", cat: "ACCESO PRIVADO", w: 400, h: 500, img: "7.jpg", user: "LINDA", avatar: "13.jpg" },
+            { title: "MAXIMA SEXUALIDAD", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "8.jpg", user: "VALERY", avatar: "11.jpg" },
+            { title: "MAXIMA SEXUALIDAD", cat: "EDICIÓN LIMITADA", w: 400, h: 600, img: "9.jpg", user: "LINDA", avatar: "13.jpg" },
+            { title: "DIA PRIVADO", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "10.jpg", user: "LINDA", avatar: "13.jpg" },
+            { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 500, img: "11.jpg", user: "VALERY", avatar: "11.jpg" },
+            { title: "LUZ & PRESENCIA", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "12.jpg", user: "ASHLEY", avatar: "11.jpg" }
         ];
 
         let totalCardsGenerated = 0;
@@ -392,24 +405,40 @@
             let lastWasAd = false;
             
             for (let i = 0; i < count; i++) {
-                // Alternación controlada perfecta: Inyecta un anuncio cada 3 tarjetas normales sin repetirse
                 if (totalCardsGenerated % 3 === 0 && totalCardsGenerated !== 0 && !lastWasAd) {
                     const adWrapper = document.createElement("div");
                     adWrapper.className = "card-wrapper";
                     adWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
+                    
                     adWrapper.innerHTML = `
-                        <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div class="premium-card" style="padding: 12px; background: rgba(255,255,255,0.02); text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                             <span class="card-category" style="margin-bottom: 8px; display: block; color: var(--text-secondary); font-size: 9px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
-                            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+                            <iframe class="ad-iframe" id="ad-frame-${totalCardsGenerated}"></iframe>
                         </div>
                     `;
                     grid.appendChild(adWrapper);
 
-                    const adScript = document.createElement("script");
-                    adScript.async = true;
-                    adScript.setAttribute("data-cfasync", "false");
-                    adScript.src = "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
-                    adWrapper.querySelector('.premium-card').appendChild(adScript);
+                    const iframe = document.getElementById(`ad-frame-${totalCardsGenerated}`);
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    
+                    iframeDoc.open();
+                    iframeDoc.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <style>
+                                * { margin:0; padding:0; box-sizing:border-box; }
+                                body { background: transparent; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+                                #container-08b3b5ac0a05c03e36bd03b41791e4af { width: 100% !important; height: auto !important; }
+                            </style>
+                        </head>
+                        <body>
+                            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+                            <script async data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"><\/script>
+                        </body>
+                        </html>
+                    `);
+                    iframeDoc.close();
                     
                     lastWasAd = true;
                     totalCardsGenerated++;
