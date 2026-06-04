@@ -380,12 +380,20 @@
                     adWrapper.innerHTML = `
                         <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                             <span class="card-category" style="margin-bottom: 12px; display: block; color: var(--text-secondary); font-size: 10px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
-                            <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"><\/script>
                             <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
                         </div>
                     `;
                     grid.appendChild(adWrapper);
+
+                    // 🚀 Inyección segura del script para que cargue perfectamente en celulares
+                    const adScript = document.createElement("script");
+                    adScript.async = true;
+                    adScript.setAttribute("data-cfasync", "false");
+                    adScript.src = "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
+                    adWrapper.querySelector('.premium-card').appendChild(adScript);
                 }
+
+                // Generación de tarjeta de contenido normal
 
                 // Generación de tarjeta de contenido normal
                 const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
