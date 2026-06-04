@@ -247,6 +247,15 @@
             .modal-info-side { padding: 24px; height: 50vh; }
             .modal-title { font-size: 24px; }
         }
+
+        /* Forzar a que la barra flotante de Adsterra gane en prioridad al menú */
+div[id^="asg-"], 
+div[class^="asg-"], 
+[id*="container"], 
+#creative-container-social {
+    z-index: 2147483647 !important; /* Capa máxima absoluta en navegadores */
+}
+        
     </style>
 
     <script src="https://pl29631880.effectivecpmnetwork.com/a3/e9/67/a3e967e9ea34f8a1cf0359fae0cc1cbf.js"></script>
