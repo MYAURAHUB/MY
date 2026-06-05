@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura</title>
+    <title>AURA</title>
+    <meta name="description" content="Premium visual network inspired by the future. Engineered for elite creators.">
+    
     <style>
         /* ==========================================================================
         1. DESIGN SYSTEM & VARIABLES
@@ -27,13 +29,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        /* Oculta el cursor del sistema únicamente en ordenadores */
-        @media (min-width: 1025px) {
-            * {
-                cursor: none !important;
-            }
+            cursor: none !important;
         }
 
         body {
@@ -45,7 +41,7 @@
         }
 
         body.modal-open {
-            overflow: hidden;
+            overflow: hidden; /* Evita scroll de fondo cuando el detalle está abierto */
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -78,16 +74,10 @@
         .pointer-hover .mouse-follower-aura { width: 60px; height: 60px; border-color: rgba(255, 255, 255, 0.5); }
 
         /* ==========================================================================
-        3. GLASS HEADER (CORREGIDO PARA ESTAR SIEMPRE ENFRENTE)
+        3. GLASS HEADER
            ========================================================================== */
         .glass-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px; 
-            background: rgba(10, 10, 10, 0.8) !important; /* Forzar fondo oscuro para contraste */
-            backdrop-filter: blur(var(--blur-radius)) !important; 
-            -webkit-backdrop-filter: blur(var(--blur-radius)) !important; 
-            border-bottom: 1px solid var(--border-glow); 
-            z-index: 99999 !important; /* Capa ultra alta para evitar que las tarjetas se encimen */
-            display: flex; align-items: center; justify-content: space-between; padding: 0 40px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: var(--bg-surface); backdrop-filter: blur(var(--blur-radius)); -webkit-backdrop-filter: blur(var(--blur-radius)); border-bottom: 1px solid var(--border-glow); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 40px;
         }
         .header-left { display: flex; align-items: center; gap: 32px; }
         .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
@@ -98,74 +88,54 @@
         .search-input { width: 100%; padding: 12px 20px 12px 48px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glow); border-radius: 30px; color: var(--text-primary); font-family: var(--font-sans); outline: none; transition: all 0.3s var(--transition-smooth); }
         .search-input:focus { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); }
         .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); width: 16px; height: 16px; }
-        .header-right { display: flex; align-items: center; gap: 20px; }
-        .icon-btn { background: none; border: none; color: var(--text-primary); position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glow); }
-        .notification-badge { position: absolute; top: 8px; right: 8px; width: 6px; height: 6px; background: #ff3366; border-radius: 50%; }
-        .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-glow); }
-
-        /* Ajustes responsivos para pantallas móviles */
-        @media (max-width: 768px) {
-            .glass-header { padding: 0 16px !important; height: 65px; }
-            .nav-menu { gap: 14px; }
-            .nav-link { font-size: 13px; }
-            .search-container { display: none; }
-        }
+        .header-right { display: flex; align-items: center; gap: 24px; }
+        .icon-btn { background: none; border: none; color: var(--text-primary); position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glow); }
+        .notification-badge { position: absolute; top: 10px; right: 10px; width: 6px; height: 6px; background: #ff3366; border-radius: 50%; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-glow); }
 
         /* ==========================================================================
         4. MASONRY GRID & CARDS
            ========================================================================== */
-        main { padding-top: 90px; padding-bottom: 60px; width: 100%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
-        
+        main { padding-top: 120px; padding-bottom: 60px; width: 100%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
         .masonry-grid { columns: 5 300px; column-gap: 24px; padding: 0 40px; width: 100%; }
         
         @media (max-width: 1200px) { .masonry-grid { columns: 3; } }
-        @media (max-width: 768px) { 
-            .masonry-grid { columns: 2 !important; padding: 0 12px !important; column-gap: 12px !important; } 
-        }
+        @media (max-width: 768px) { .masonry-grid { columns: 2; padding: 0 20px; column-gap: 16px;} .glass-header { padding: 0 20px; } .search-container { display: none; } }
+        @media (max-width: 480px) { .masonry-grid { columns: 1; } }
 
         .card-wrapper { break-inside: avoid; margin-bottom: 24px; opacity: 0; transform: translateY(40px) scale(0.95); animation: revealCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; perspective: 1000px; }
-        @media (max-width: 768px) { .card-wrapper { margin-bottom: 12px; } }
         @keyframes revealCard { to { opacity: 1; transform: translateY(0) scale(1); } }
 
         .premium-card { position: relative; background: var(--bg-surface); border: 1px solid var(--border-glow); border-radius: 24px; overflow: hidden; transform-style: preserve-3d; transition: border-color 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth); }
         .premium-card:hover { border-color: var(--border-glow-hover); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-        .card-media-box { position: relative; width: 100%; overflow: hidden; background: #111; z-index: 1; }
+        .card-media-box { position: relative; width: 100%; overflow: hidden; background: #111; }
         .card-img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.15, 1, 0.3, 1); will-change: transform; }
         .premium-card:hover .card-img { transform: scale(1.06) translateZ(10px); }
 
         .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0.4) 40%, rgba(0,0,0,0) 100%); opacity: 0; transition: opacity 0.4s var(--transition-smooth); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; z-index: 2; }
-        @media (max-width: 768px) { .card-overlay { opacity: 1; padding: 12px; } }
         .premium-card:hover .card-overlay { opacity: 1; }
         .card-content { transform: translateY(15px); transition: transform 0.4s var(--transition-smooth); }
-        @media (max-width: 768px) { .card-content { transform: translateY(0); } }
         .premium-card:hover .card-content { transform: translateY(0); }
         .card-category { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 700; display: block; }
-        @media (max-width: 768px) { .card-category { font-size: 8px; margin-bottom: 2px; } }
         .card-title { font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.3; margin-bottom: 12px; }
-        @media (max-width: 768px) { .card-title { font-size: 13px; margin-bottom: 6px; } }
         .card-footer { display: flex; align-items: center; justify-content: space-between; opacity: 0; transition: opacity 0.3s ease; }
-        @media (max-width: 768px) { .card-footer { opacity: 1; } }
         .premium-card:hover .card-footer { opacity: 1; }
         .author-info { display: flex; align-items: center; gap: 10px; }
         .author-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
         .author-name { font-size: 12px; color: var(--text-primary); font-weight: 500; }
-        @media (max-width: 768px) { .author-name { font-size: 10px; } .author-avatar { width: 18px; height: 18px; } }
         .action-btn { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 20px; color: white; font-size: 12px; font-weight: 600; transition: all 0.2s; }
-        @media (max-width: 768px) { .action-btn { display: none; } }
         .action-btn:hover { background: #fff; color: #000; transform: scale(1.05); }
 
         .infinite-loader-trigger { width: 100%; height: 60px; display: flex; justify-content: center; align-items: center; margin-top: 40px; }
         .spinner { width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.1); border-top-color: var(--text-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .ad-iframe { width: 100%; height: 240px; border: none; background: transparent; overflow: hidden; display: block; }
-
         /* ==========================================================================
-        5. NEXT-GEN DETAILED INTERFACE
+        5. NEXT-GEN DETAILED INTERFACE (MORPHING MODAL LAYER)
            ========================================================================== */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-modal);
-            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 200000;
+            backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 2000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none;
             transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,6 +163,7 @@
             transform: scale(1) translateY(0); opacity: 1;
         }
 
+        /* Modal Izquierdo: Contenedor de Medios */
         .modal-media-side {
             position: relative; width: 100%; height: 100%; background: #0a0a0a;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
@@ -207,6 +178,7 @@
             transform: scale(1.03);
         }
 
+        /* Modal Derecho: Contenido de Información de Lujo */
         .modal-info-side {
             padding: 48px; display: flex; flex-direction: column; justify-content: space-between;
             background: linear-gradient(135deg, rgba(15,15,15,0.7) 0%, rgba(25,25,25,0.7) 100%);
@@ -247,9 +219,7 @@
             .modal-info-side { padding: 24px; height: 50vh; }
             .modal-title { font-size: 24px; }
         }
-        
     </style>
-
 </head>
 <body>
 
@@ -278,12 +248,25 @@
         </div>
         <div class="header-right">
             <button class="icon-btn magnetic"><div class="notification-badge"></div><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></button>
-            <img src="14.jpg" alt="Avatar" class="user-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar">
         </div>
     </header>
 
     <main>
-        <div class="masonry-grid" id="js-grid"></div>
+        <div class="masonry-grid" id="js-grid">
+            
+            <div class="card-wrapper" style="opacity: 1; transform: none; break-inside: avoid; margin-bottom: 24px;">
+                <div class="premium-card" style="padding: 16px; background: rgba(255,255,255,0.02); text-align: center; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <span class="card-category" style="margin-bottom: 12px; display: block; color: var(--text-secondary); font-size: 10px; letter-spacing: 2px; font-weight: 700;">Contenido Sugerido</span>
+                    
+                    <script async="async" data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"></script>
+                     <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+
+                    
+                </div>
+            </div>
+            
+        </div>
         <div class="infinite-loader-trigger" id="js-infinite-trigger"><div class="spinner"></div></div>
     </main>
 
@@ -319,6 +302,7 @@
     </div>
 
     <script>
+        // CONFIGURACIÓN DE TUS IMÁGENES LOCALES
         const ASSET_PIPELINE = [
             { title: "DIA DE SUERTE", cat: "EXPERIENCIA PREMIUM", w: 400, h: 600, img: "1.jpg", user: "ASHLEY", avatar: "1.jpg" },
             { title: "EXITACION", cat: "CONTENIDO ELITE", w: 400, h: 300, img: "2.JPG", user: "ASHLEY", avatar: "1.jpg" },
@@ -334,15 +318,11 @@
             { title: "LUZ & PRESENCIA", cat: "EDICIÓN LIMITADA", w: 400, h: 700, img: "12.JPG", user: "ASHLEY", avatar: "11.JPG" }
         ];
 
-        let totalCardsGenerated = 0;
-
         document.addEventListener("DOMContentLoaded", () => {
             initMouseFollower();
             initParticleBackground();
             initMagneticButtons();
-            if (ASSET_PIPELINE.length > 0) {
-                generateCardBatch(ASSET_PIPELINE.length);
-            }
+            generateCardBatch(ASSET_PIPELINE.length);
             initInfiniteScroll();
             initModalEvents();
         });
@@ -350,8 +330,6 @@
         function initMouseFollower() {
             const follower = document.getElementById("js-follower");
             const aura = document.getElementById("js-follower-aura");
-            if (!follower || !aura) return;
-            
             let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
 
             window.addEventListener("mousemove", (e) => { mouseX = e.clientX; mouseY = e.clientY; follower.style.left = `${mouseX}px`; follower.style.top = `${mouseY}px`; });
@@ -369,9 +347,7 @@
         }
 
         function initParticleBackground() {
-            const canvas = document.getElementById("particle-canvas"); 
-            if (!canvas) return;
-            const ctx = canvas.getContext("2d"); let particles = [];
+            const canvas = document.getElementById("particle-canvas"); const ctx = canvas.getContext("2d"); let particles = [];
             function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
             window.addEventListener("resize", resize); resize();
             class Particle {
@@ -399,65 +375,11 @@
             }, true);
         }
 
-function generateCardBatch(count) {
+        function generateCardBatch(count) {
             const grid = document.getElementById("js-grid");
-            if (!grid) return;
-            let lastWasAd = false;
             
             for (let i = 0; i < count; i++) {
-                // GENERADOR DE ANUNCIOS (Mobile-First)
-                if (totalCardsGenerated % 3 === 0 && totalCardsGenerated !== 0 && !lastWasAd) {
-                    const adWrapper = document.createElement("div");
-                    adWrapper.className = "card-wrapper";
-                    adWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
-                    
-                    // Visualmente ES una tarjeta idéntica, pero adaptada para el viewport móvil
-                    adWrapper.innerHTML = `
-                        <div class="premium-card" style="padding: 10px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; aspect-ratio: 400 / 600; height: 100%; min-height: 220px;">
-                            <span class="card-category" style="margin-bottom: 4px; display: block; color: var(--text-secondary); font-size: 8px; letter-spacing: 1.5px; font-weight: 700; width: 100%; text-align: left;">Sugerido</span>
-                            
-                            <div style="width: 100%; flex-grow: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 12px; background: rgba(0,0,0,0.2);">
-                                <iframe class="ad-iframe" id="ad-frame-${totalCardsGenerated}" style="width: 100%; height: 100%; border: none; background: transparent; display: block;"></iframe>
-                            </div>
-                            
-                            <div style="width: 100%; text-align: right; opacity: 0.3; font-size: 8px; color: var(--text-secondary); letter-spacing: 0.5px; margin-top: 4px;">AD</div>
-                        </div>
-                    `;
-                    grid.appendChild(adWrapper);
-
-                    const iframe = document.getElementById(`ad-frame-${totalCardsGenerated}`);
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    
-                    iframeDoc.open();
-                    iframeDoc.write(`
-                        <!DOCTYPE html>
-                        <html>
-                        <head>
-                            <style>
-                                * { margin:0; padding:0; box-sizing:border-box; }
-                                body { background: transparent; display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; overflow: hidden; }
-                                /* Forzamos que el script de Adsterra se estire al 100% del contenedor interno del móvil */
-                                #container-08b3b5ac0a05c03e36bd03b41791e4af { width: 100% !important; height: 100% !important; display: flex; justify-content: center; align-items: center; }
-                                #container-08b3b5ac0a05c03e36bd03b41791e4af * { max-width: 100% !important; height: auto !important; }
-                            </style>
-                        </head>
-                        <body>
-                            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
-                            <script async data-cfasync="false" src="https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js"><\/script>
-                        </body>
-                        </html>
-                    `);
-                    iframeDoc.close();
-                    
-                    // Vincula el efecto Tilt por si un usuario entra en tablet/iPad
-                    bindTiltEffect(adWrapper.querySelector('.premium-card'));
-
-                    lastWasAd = true;
-                    totalCardsGenerated++;
-                }
-
-                // TARJETAS DE CONTENIDO NORMAL
-                const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
+                const schema = ASSET_PIPELINE[i % ASSET_PIPELINE.length];
                 const cardWrapper = document.createElement("div");
                 cardWrapper.className = "card-wrapper";
                 cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
@@ -490,133 +412,10 @@ function generateCardBatch(count) {
 
                 grid.appendChild(cardWrapper);
                 bindTiltEffect(cardWrapper.querySelector('.premium-card'));
-                
-                lastWasAd = false;
-                totalCardsGenerated++;
-            }
-        }
-
-                // TARJETAS DE CONTENIDO NORMAL
-                const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
-                const cardWrapper = document.createElement("div");
-                cardWrapper.className = "card-wrapper";
-                cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
-
-                cardWrapper.innerHTML = `
-                    <div class="premium-card" 
-                        data-title="${schema.title}" 
-                        data-cat="${schema.cat}" 
-                        data-img="${schema.img}" 
-                        data-user="${schema.user}" 
-                        data-avatar="${schema.avatar}">
-                        <div class="card-media-box" style="aspect-ratio: ${schema.w} / ${schema.h}">
-                            <img src="${schema.img}" alt="${schema.title}" class="card-img" loading="lazy">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="card-category">${schema.cat}</span>
-                                <h2 class="card-title">${schema.title}</h2>
-                                <div class="card-footer">
-                                    <div class="author-info">
-                                        <img src="${schema.avatar}" class="author-avatar" alt="User">
-                                        <span class="author-name">${schema.user}</span>
-                                    </div>
-                                    <button class="action-btn">Explorar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                grid.appendChild(cardWrapper);
-                bindTiltEffect(cardWrapper.querySelector('.premium-card'));
-                
-                lastWasAd = false;
-                totalCardsGenerated++;
-            }
-        }
-
-                // TARJETAS DE CONTENIDO NORMAL
-                const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
-                const cardWrapper = document.createElement("div");
-                cardWrapper.className = "card-wrapper";
-                cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
-
-                cardWrapper.innerHTML = `
-                    <div class="premium-card" 
-                        data-title="${schema.title}" 
-                        data-cat="${schema.cat}" 
-                        data-img="${schema.img}" 
-                        data-user="${schema.user}" 
-                        data-avatar="${schema.avatar}">
-                        <div class="card-media-box" style="aspect-ratio: ${schema.w} / ${schema.h}">
-                            <img src="${schema.img}" alt="${schema.title}" class="card-img" loading="lazy">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="card-category">${schema.cat}</span>
-                                <h2 class="card-title">${schema.title}</h2>
-                                <div class="card-footer">
-                                    <div class="author-info">
-                                        <img src="${schema.avatar}" class="author-avatar" alt="User">
-                                        <span class="author-name">${schema.user}</span>
-                                    </div>
-                                    <button class="action-btn">Explorar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                grid.appendChild(cardWrapper);
-                bindTiltEffect(cardWrapper.querySelector('.premium-card'));
-                
-                lastWasAd = false;
-                totalCardsGenerated++;
-            }
-        }
-
-                const schema = ASSET_PIPELINE[totalCardsGenerated % ASSET_PIPELINE.length];
-                const cardWrapper = document.createElement("div");
-                cardWrapper.className = "card-wrapper";
-                cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
-
-                cardWrapper.innerHTML = `
-                    <div class="premium-card" 
-                        data-title="${schema.title}" 
-                        data-cat="${schema.cat}" 
-                        data-img="${schema.img}" 
-                        data-user="${schema.user}" 
-                        data-avatar="${schema.avatar}">
-                        <div class="card-media-box" style="aspect-ratio: ${schema.w} / ${schema.h}">
-                            <img src="${schema.img}" alt="${schema.title}" class="card-img" loading="lazy">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="card-category">${schema.cat}</span>
-                                <h2 class="card-title">${schema.title}</h2>
-                                <div class="card-footer">
-                                    <div class="author-info">
-                                        <img src="${schema.avatar}" class="author-avatar" alt="User">
-                                        <span class="author-name">${schema.user}</span>
-                                    </div>
-                                    <button class="action-btn">Explorar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                grid.appendChild(cardWrapper);
-                bindTiltEffect(cardWrapper.querySelector('.premium-card'));
-                
-                lastWasAd = false;
-                totalCardsGenerated++;
             }
         }
 
         function bindTiltEffect(card) {
-            if (!card) return;
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const angleX = ((rect.height / 2) - (e.clientY - rect.top)) / 15;
@@ -630,7 +429,6 @@ function generateCardBatch(count) {
             const grid = document.getElementById("js-grid");
             const overlay = document.getElementById("js-modal-overlay");
             const closeBtn = document.getElementById("js-close-modal");
-            if (!grid || !overlay || !closeBtn) return;
 
             const mImg = document.getElementById("js-modal-img");
             const mTitle = document.getElementById("js-modal-title");
@@ -640,7 +438,7 @@ function generateCardBatch(count) {
 
             grid.addEventListener("click", (e) => {
                 const card = e.target.closest(".premium-card");
-                if (!card || !card.dataset.title) return;
+                if (!card) return;
 
                 const { title, cat, img, user, avatar } = card.dataset;
 
@@ -660,13 +458,18 @@ function generateCardBatch(count) {
             };
 
             closeBtn.addEventListener("click", closeModal);
-            overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
-            window.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("active")) closeModal(); });
+            
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) closeModal();
+            });
+
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && overlay.classList.contains("active")) closeModal();
+            });
         }
 
         function initInfiniteScroll() {
             const trigger = document.getElementById("js-infinite-trigger");
-            if (!trigger) return;
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
                     setTimeout(() => { generateCardBatch(4); }, 300);
