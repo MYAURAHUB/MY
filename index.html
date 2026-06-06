@@ -214,11 +214,34 @@
         .cta-premium-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
 
         @media (max-width: 900px) {
-            .modal-window { grid-template-columns: 3fr; height: 90vh; }
+            .modal-window { grid-template-columns: 1fr; height: 90vh; }
             .modal-media-side { height: 40vh; }
             .modal-info-side { padding: 24px; height: 50vh; }
             .modal-title { font-size: 24px; }
         }
+
+
+
+        /* ====================================================
+       PEGAR AQUÍ: OPTIMIZACIÓN MASONRY 2 COLUMN-GRID MÓVIL
+       ==================================================== */
+    #js-grid {
+        column-count: 3 !important;
+        column-gap: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    .card-wrapper {
+        break-inside: avoid !important;
+        inline-size: 100% !important;
+        margin-bottom: 12px !important;
+        display: inline-block !important; /* Asegura estabilidad en Safari/iOS */
+    }
+</style>
     </style>
 </head>
 <body>
