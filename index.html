@@ -406,37 +406,35 @@
         }
 
 
-        function createAdCard() {
+    function createAdCard() {
 
     const adWrapper = document.createElement("div");
 
     adWrapper.className = "card-wrapper";
 
-    const adId = "container-" + Date.now() + "-" + Math.floor(Math.random() * 100000);
-
     adWrapper.innerHTML = `
         <div class="premium-card"
              style="
+                padding:16px;
                 min-height:250px;
-                padding:15px;
                 display:flex;
                 align-items:center;
-                justify-content:center;">
-            <div id="${adId}"></div>
+                justify-content:center;
+             ">
+
+            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+
         </div>
     `;
 
-    setTimeout(() => {
+    const script = document.createElement("script");
 
-        const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync","false");
+    script.src =
+    "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
 
-        script.async = true;
-        script.src =
-        "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
-
-        adWrapper.appendChild(script);
-
-    }, 100);
+    adWrapper.appendChild(script);
 
     return adWrapper;
 }
@@ -502,7 +500,9 @@
             cardWrapper.querySelector(".premium-card")
         );
 
-        grid.appendChild(createAdCard());
+        if ((i + 1) % 3 === 0) {
+    grid.appendChild(createAdCard());
+}
     }
 }
 
