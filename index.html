@@ -108,8 +108,8 @@
 
         .premium-card { position: relative; background: var(--bg-surface); border: 1px solid var(--border-glow); border-radius: 24px; overflow: hidden; transform-style: preserve-3d; transition: border-color 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth); }
         .premium-card:hover { border-color: var(--border-glow-hover); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-        .card-media-box { position: relative; width: 100%; overflow: hidden; background: #111; }
-        .card-img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.15, 1, 0.3, 1); will-change: transform; }
+        .card-media-box { position: relative; width: 100%; height: 420px; overflow: hidden; background: #111; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .premium-card:hover .card-img { transform: scale(1.06) translateZ(10px); }
 
         .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0.4) 40%, rgba(0,0,0,0) 100%); opacity: 0; transition: opacity 0.4s var(--transition-smooth); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; z-index: 2; }
@@ -460,8 +460,7 @@
                  data-user="${schema.user}"
                  data-avatar="${schema.avatar}">
 
-                <div class="card-media-box"
-                     style="aspect-ratio:${schema.w}/${schema.h}">
+                <div class="card-media-box">
                     <img
                         src="${schema.img}"
                         alt="${schema.title}"
