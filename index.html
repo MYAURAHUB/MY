@@ -405,45 +405,106 @@
             }, true);
         }
 
-        function generateCardBatch(count) {
-            const grid = document.getElementById("js-grid");
-            
-            for (let i = 0; i < count; i++) {
-                const schema = ASSET_PIPELINE[i % ASSET_PIPELINE.length];
-                const cardWrapper = document.createElement("div");
-                cardWrapper.className = "card-wrapper";
-                cardWrapper.style.animationDelay = `${(i % 6) * 0.08}s`;
 
-                cardWrapper.innerHTML = `
-                    <div class="premium-card" 
-                        data-title="${schema.title}" 
-                        data-cat="${schema.cat}" 
-                        data-img="${schema.img}" 
-                        data-user="${schema.user}" 
-                        data-avatar="${schema.avatar}">
-                        <div class="card-media-box" style="aspect-ratio: ${schema.w} / ${schema.h}">
-                            <img src="${schema.img}" alt="${schema.title}" class="card-img" loading="lazy">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-content">
-                                <span class="card-category">${schema.cat}</span>
-                                <h2 class="card-title">${schema.title}</h2>
-                                <div class="card-footer">
-                                    <div class="author-info">
-                                        <img src="${schema.avatar}" class="author-avatar" alt="User">
-                                        <span class="author-name">${schema.user}</span>
-                                    </div>
-                                    <button class="action-btn">Explorar</button>
-                                </div>
+        function createAdCard() {
+
+    const adWrapper = document.createElement("div");
+
+    adWrapper.className = "card-wrapper";
+
+    const adId = "container-" + Date.now() + "-" + Math.floor(Math.random() * 100000);
+
+    adWrapper.innerHTML = `
+        <div class="premium-card"
+             style="
+                min-height:250px;
+                padding:15px;
+                display:flex;
+                align-items:center;
+                justify-content:center;">
+            <div id="${adId}"></div>
+        </div>
+    `;
+
+    setTimeout(() => {
+
+        const script = document.createElement("script");
+
+        script.async = true;
+        script.src =
+        "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
+
+        adWrapper.appendChild(script);
+
+    }, 100);
+
+    return adWrapper;
+}
+        
+
+        function generateCardBatch(count) {
+
+    const grid = document.getElementById("js-grid");
+
+    for (let i = 0; i < count && i < ASSET_PIPELINE.length; i++) {
+
+        const schema = ASSET_PIPELINE[i];
+
+        const cardWrapper = document.createElement("div");
+
+        cardWrapper.className = "card-wrapper";
+
+        cardWrapper.innerHTML = `
+            <div class="premium-card"
+                 data-title="${schema.title}"
+                 data-cat="${schema.cat}"
+                 data-img="${schema.img}"
+                 data-user="${schema.user}"
+                 data-avatar="${schema.avatar}">
+
+                <div class="card-media-box"
+                     style="aspect-ratio:${schema.w}/${schema.h}">
+                    <img
+                        src="${schema.img}"
+                        alt="${schema.title}"
+                        class="card-img"
+                        loading="lazy">
+                </div>
+
+                <div class="card-overlay">
+                    <div class="card-content">
+                        <span class="card-category">${schema.cat}</span>
+                        <h2 class="card-title">${schema.title}</h2>
+
+                        <div class="card-footer">
+                            <div class="author-info">
+                                <img src="${schema.avatar}"
+                                     class="author-avatar">
+
+                                <span class="author-name">
+                                    ${schema.user}
+                                </span>
                             </div>
+
+                            <button class="action-btn">
+                                Explorar
+                            </button>
                         </div>
                     </div>
-                `;
+                </div>
 
-                grid.appendChild(cardWrapper);
-                bindTiltEffect(cardWrapper.querySelector('.premium-card'));
-            }
-        }
+            </div>
+        `;
+
+        grid.appendChild(cardWrapper);
+
+        bindTiltEffect(
+            cardWrapper.querySelector(".premium-card")
+        );
+
+        grid.appendChild(createAdCard());
+    }
+}
 
         function bindTiltEffect(card) {
             card.addEventListener('mousemove', (e) => {
