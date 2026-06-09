@@ -412,29 +412,39 @@
 
     adWrapper.className = "card-wrapper";
 
-    adWrapper.innerHTML = `
-        <div class="premium-card"
-             style="
-                padding:16px;
-                min-height:250px;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-             ">
+    const adContainer = document.createElement("div");
 
-            <div id="container-08b3b5ac0a05c03e36bd03b41791e4af"></div>
+    adContainer.className = "premium-card";
 
-        </div>
+    adContainer.style.minHeight = "280px";
+    adContainer.style.display = "flex";
+    adContainer.style.alignItems = "center";
+    adContainer.style.justifyContent = "center";
+    adContainer.style.padding = "10px";
+
+    adWrapper.appendChild(adContainer);
+
+    const configScript = document.createElement("script");
+
+    configScript.text = `
+        atOptions = {
+            'key' : 'efe027ea155f16fe50be8f1783208e0b',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
     `;
 
-    const script = document.createElement("script");
+    const invokeScript = document.createElement("script");
 
-    script.async = true;
-    script.setAttribute("data-cfasync","false");
-    script.src =
-    "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
+    invokeScript.src =
+    "https://www.highperformanceformat.com/efe027ea155f16fe50be8f1783208e0b/invoke.js";
 
-    adWrapper.appendChild(script);
+    invokeScript.async = true;
+
+    adContainer.appendChild(configScript);
+    adContainer.appendChild(invokeScript);
 
     return adWrapper;
 }
@@ -499,7 +509,7 @@
             cardWrapper.querySelector(".premium-card")
         );
 
-        if ((i + 1) % 2 === 0) {
+        if (currentIndex % 2 === 0) {
     grid.appendChild(createAdCard());
 }
     }
