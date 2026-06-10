@@ -29,7 +29,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none !important; /* For custom mouse follower */
+            /*cursor: none !important; /* For custom mouse follower */
         }
 
         body {
@@ -184,132 +184,6 @@
             text-transform: uppercase;
         }
 
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s var(--transition-smooth);
-            position: relative;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-primary);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s var(--transition-smooth);
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* Advanced Expandable Search Bar */
-        .search-container {
-            flex: 0 1 400px;
-            position: relative;
-            transition: flex 0.4s var(--transition-smooth);
-        }
-
-        .search-container:focus-within {
-            flex: 0 1 550px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 20px 12px 48px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glow);
-            border-radius: 30px;
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s var(--transition-smooth);
-        }
-
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            pointer-events: none;
-            width: 16px;
-            height: 16px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        /* Magnetic Notification Bell Button */
-        .icon-btn {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            position: relative;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-glow);
-            transition: background 0.3s;
-        }
-
-        .icon-btn:hover {
-            background: rgba(255,255,255,0.08);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 6px;
-            height: 6px;
-            background: #ff3366;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ff3366;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--border-glow);
-            transition: transform 0.3s var(--transition-smooth);
-        }
-
-        .user-avatar:hover {
-            transform: scale(1.05);
-        }
-
         /* ==========================================================================
         5. MAIN INTERFACE: REVEAL HERO & PERFECT MASONRY GRID
            ========================================================================== */
@@ -364,10 +238,6 @@
 
             .glass-header {
                 padding: 0 16px;
-            }
-
-            .search-container {
-                display: none;
             }
         }
 
@@ -457,101 +327,9 @@
             transform: translateY(0);
         }
 
-        .card-category {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.3;
-            margin-bottom: 12px;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .premium-card:hover .card-footer {
-            opacity: 1;
-            transition-delay: 0.1s;
-        }
-
-        .author-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .author-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .author-name {
-            font-size: 12px;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        /* Floating Interactive Action Buttons */
-        .action-btn {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .action-btn:hover {
-            background: #fff;
-            color: #000;
-            transform: scale(1.05);
-        }
-
         /* ==========================================================================
         7. SKELETON LOADING EFFECTS
            ========================================================================== */
-        .skeleton-card {
-            height: 350px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid var(--border-glow);
-        }
-
-        .skeleton-card::after {
-            content: "";
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .infinite-loader-trigger {
             width: 100%;
             height: 60px;
@@ -621,25 +399,37 @@
             transform: scale(1);
         }
 
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            background: rgba(255,255,255,.1);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            z-index: 100000;
+        /* ==========================================
+           NUEVOS ESTILOS PARA EL BANNER 300x250 
+        ========================================== */
+        .banner-card-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
         }
 
-        .close-modal:hover {
-            background: rgba(255,255,255,.2);
+        @media (max-width: 768px) {
+            .banner-card-wrapper {
+                grid-column: span 2; /* Forza a ocupar el ancho completo en mobile */
+            }
+        }
+
+        .premium-banner-box {
+            width: 100%;
+            max-width: 340px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 20px 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(var(--blur-radius));
+            -webkit-backdrop-filter: blur(var(--blur-radius));
         }
     </style>
 </head>
@@ -668,10 +458,14 @@
         </div>
     </main>
 
+    <div class="image-modal" id="js-modal" onclick="this.classList.remove('active')">
+        <img id="js-modal-img" src="" alt="Preview">
+    </div>
+
     <script>
         // 1. CONFIGURACIÓN DE IMÁGENES LOCALES
         const ASSET_PIPELINE = [
-            { img: "1.png" }, { img: "2.jpg" }, { img: "3.JPG" },
+            { img: "1.png" }, { img: "2.JPG" }, { img: "3.JPG" },
             { img: "4.png" }, { img: "5.jpg" }, { img: "6.jpg" },
             { img: "7.png" }, { img: "8.jpg" }, { img: "9.JPG" },
             { img: "10.png" }, { img: "11.JPG" }, { img: "12.JPG" },
@@ -682,8 +476,9 @@
             { img: "25.JPG" },
         ];
 
-        // Variable global para controlar que el banner se cree solo una vez
-        let bannerInserted = false;
+        // Global variables for banner control
+        let bannerInserted = false;          // Controla el Native Banner (Posición 6)
+        let rectangleBannerInserted = false; // Controla el nuevo Banner 300x250 (Posición 13)
         let globalCardCount = 0;
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -699,8 +494,8 @@
 
             initParticleBackground();
 
-            // Renderizamos un lote inicial (ej. 12 tarjetas). El script inyectará automáticamente el banner en la posición 6.
-            generateCardBatch(12);
+            // Renderizamos un lote inicial de 15 tarjetas.
+            generateCardBatch(15);
             initInfiniteScroll();
         });
 
@@ -806,16 +601,13 @@
            -------------------------------------------------------------------------- */
         function initMagneticButtons() {
             const targets = document.querySelectorAll('.magnetic');
-            
             targets.forEach(btn => {
                 btn.addEventListener('mousemove', function(e) {
                     const rect = this.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width/2;
                     const y = e.clientY - rect.top - rect.height/2;
-                    
                     this.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
                 });
-                
                 btn.addEventListener('mouseleave', function() {
                     this.style.transform = 'translate(0px, 0px)';
                 });
@@ -823,7 +615,7 @@
         }
 
         /* --------------------------------------------------------------------------
-        D. CARDS GENERATOR PIPELINE (Inyección inteligente del Banner incorporada)
+        D. CARDS GENERATOR PIPELINE
            -------------------------------------------------------------------------- */
         function generateCardBatch(count) {
             const grid = document.getElementById("js-grid");
@@ -831,7 +623,7 @@
             for (let i = 0; i < count; i++) {
                 globalCardCount++;
 
-                // Creación de la Tarjeta Estándar
+                // Tarjeta de contenido normal
                 const schema = ASSET_PIPELINE[Math.floor(Math.random() * ASSET_PIPELINE.length)];
                 const cardWrapper = document.createElement("div");
                 cardWrapper.className = "card-wrapper";
@@ -839,15 +631,11 @@
 
                 cardWrapper.innerHTML = `
                     <div class="premium-card">
-                        <div class="card-media-box" style="aspect-ratio:1/1.3">
+                        <div class="card-media-box">
                             <img src="${schema.img}" class="card-img" loading="lazy">
                         </div>
                         <div class="card-overlay">
-                            <div class="card-content">
-                                <div class="card-footer">
-                                    <div class="author-info"></div>
-                                </div>
-                            </div>
+                            <div class="card-content"></div>
                         </div>
                     </div>
                 `;
@@ -860,113 +648,106 @@
                 });
                 bindTiltEffect(card);
 
-                // CONTROL EXACTO DE INSERCIÓN: Justo después de la tarjeta número 6
+                // CONTROL INSERCIÓN 1: NATIVE BANNER (Posición 6)
                 if (globalCardCount === 6 && !bannerInserted) {
                     bannerInserted = true;
-
                     const bannerWrapper = document.createElement("div");
                     bannerWrapper.className = "native-banner-wrapper";
-                    
-                    // Inyectamos los scripts nativos de tu red publicitaria de forma segura
-                    bannerWrapper.innerHTML = `
-                        <div id="container-08b3b5ac0a05c03e36bd03b41791e4af" style="width:100%; display:flex; justify-content:center;"></div>
-                    `;
+                    bannerWrapper.innerHTML = `<div id="container-08b3b5ac0a05c03e36bd03b41791e4af" style="width:100%; display:flex; justify-content:center;"></div>`;
                     grid.appendChild(bannerWrapper);
 
-                    // Ejecución asíncrona del script del banner para evitar bloqueos visuales
                     const script = document.createElement("script");
                     script.async = true;
                     script.setAttribute("data-cfasync", "false");
                     script.src = "https://pl29631893.effectivecpmnetwork.com/08b3b5ac0a05c03e36bd03b41791e4af/invoke.js";
                     bannerWrapper.appendChild(script);
                 }
+
+                // CONTROL INSERCIÓN 2: NUEVO BANNER 300x250 (Posición 13)
+                if (globalCardCount === 12 && !rectangleBannerInserted) {
+                    rectangleBannerInserted = true;
+                    const bannerWrapper300 = document.createElement("div");
+                    bannerWrapper300.className = "banner-card-wrapper";
+                    
+                    // Creamos el contenedor interno del placeholder
+                    const placeholderBox = document.createElement("div");
+                    placeholderBox.className = "premium-banner-box";
+                    
+                    const container300 = document.createElement("div");
+                    container300.id = "container-300x250-placeholder";
+                    container300.style.width = "300px";
+                    container300.style.height = "250px";
+                    container300.style.background = "#111";
+                    
+                    placeholderBox.appendChild(container300);
+                    bannerWrapper300.appendChild(placeholderBox);
+                    grid.appendChild(bannerWrapper300);
+
+                    // 1. Script de configuracion (atOptions)
+                    const scriptConfig = document.createElement("script");
+                    scriptConfig.type = "text/javascript";
+                    scriptConfig.text = `
+                        atOptions = {
+                            'key' : 'efe027ea155f16fe50be8f1783208e0b',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    `;
+                    container300.appendChild(scriptConfig);
+
+                    // 2. Script que invoca el anuncio externo
+                    const scriptInvoke = document.createElement("script");
+                    scriptInvoke.type = "text/javascript";
+                    scriptInvoke.src = "https://www.highperformanceformat.com/efe027ea155f16fe50be8f1783208e0b/invoke.js";
+                    container300.appendChild(scriptInvoke);
+                }
             }
         }
 
         function bindTiltEffect(card) {
-            if (window.innerWidth <= 768) return;
-
-            card.addEventListener('mousemove', (e) => {
+            card.addEventListener("mousemove", (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-
                 const xc = rect.width / 2;
                 const yc = rect.height / 2;
-
                 const angleX = (yc - y) / 15;
                 const angleY = (x - xc) / 15;
-
-                card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.01,1.01,1.01)`;
+                card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "rotateX(0deg) rotateY(0deg)";
             });
+        }
+
+        function openImageModal(src) {
+            const modal = document.getElementById("js-modal");
+            const modalImg = document.getElementById("js-modal-img");
+            modalImg.src = src;
+            modal.classList.add("active");
         }
 
         /* --------------------------------------------------------------------------
-        E. INFINITE SCROLL PIPELINE
+        E. INFINITE SCROLL ENGINE (Intersection Observer)
            -------------------------------------------------------------------------- */
         function initInfiniteScroll() {
             const trigger = document.getElementById("js-infinite-trigger");
-            
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
                     setTimeout(() => {
-                        generateCardBatch(4);
-                    }, 300);
+                        generateCardBatch(8);
+                    }, 400);
                 }
-            }, {
-                rootMargin: "250px"
-            });
-
+            }, { rootMargin: "200px" });
+            
             observer.observe(trigger);
         }
-
-        /* ==========================================
-           VISOR PANTALLA COMPLETA FUNCTIONS
-        ========================================== */
-        function openImageModal(imageSrc) {
-            const modal = document.getElementById("imageModal");
-            const modalImage = document.getElementById("modalImage");
-
-            modalImage.src = imageSrc;
-            modal.classList.add("active");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeImageModal() {
-            document.getElementById("imageModal").classList.remove("active");
-            document.body.style.overflow = "";
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const closeBtn = document.getElementById("closeModal");
-            const modal = document.getElementById("imageModal");
-
-            closeBtn.addEventListener("click", closeImageModal);
-
-            modal.addEventListener("click", (e) => {
-                if (e.target === modal) {
-                    closeImageModal();
-                }
-            });
-
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") {
-                    closeImageModal();
-                }
-            });
-        });
     </script>
 
-    <div id="imageModal" class="image-modal">
-        <button class="close-modal" id="closeModal">✕</button>
-        <img id="modalImage" src="" alt="">
-    </div>
-
-    <script src="https://pl29631894.effectivecpmnetwork.com/95/de/af/95deaf14afc8ae87770be5dc8aaba73d.js"></script>
+<script src="https://pl29631894.effectivecpmnetwork.com/95/de/af/95deaf14afc8ae87770be5dc8aaba73d.js"></script>
 
 </body>
 </html>
